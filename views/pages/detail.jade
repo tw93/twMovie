@@ -1,11 +1,9 @@
 extends ../layout
 block content
-.container
-    .row
-        each item in movies
+    .container
+        .row
             .col-md-7
-                .embed(src="#{movie.flash}",allowFullScreen="true",quality="high",
-                width="720",height="600",align="middle",type="application/x-shockwave-flash")
+                embed(src="#{movie.flash}",allowFullScreen="true",quality="high",width="720",height="400",align="middle",type="application/x-shockwave-flash")
             .col-md-5
                 dl.dl-horizontal
                     dt 电影名字
@@ -20,3 +18,4 @@ block content
                     dd=movie.year
                     dt 简介
                     dd=movie.summary
+
