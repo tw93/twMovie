@@ -6,6 +6,7 @@ js大法好！node+mongoDB的电影网站。
 3. 运行bower install安装项目前端框架
 4. npm install安装node包依赖
 5. 使用命令node app.js就可以运行了,在本地测试端口号为3000
+
 #测试
 1. 本地首页:http://localhost:3000
 2. 本地详细页面：http://localhost:3000/movie/id(确保你已经新建电影)
