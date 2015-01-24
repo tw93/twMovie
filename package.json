@@ -6,13 +6,19 @@
   "dependencies": {
     "body-parser": "^1.10.2",
     "express": "^4.11.1",
+    "grunt-concurrent": "^1.0.0",
     "jade": "^1.9.1",
-    "mongoose": "^3.8.21",
     "moment": "^2.9.0",
-    "underscore": "^1.7.0",
-    "path": "^0.11.14"
+    "mongoose": "^3.8.21",
+    "path": "^0.11.14",
+    "underscore": "^1.7.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-nodemon": "^0.3.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
