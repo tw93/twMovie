@@ -10,5 +10,11 @@ js大法好！node+mongoDB的电影网站。
 #测试
 1. 本地首页:http://localhost:3000
 2. 本地详细页面：http://localhost:3000/movie/id(确保你已经新建电影)
-3. 后台管路页面：http://localhost:3000/admin/list
+3. 后台管理页面：http://localhost:3000/admin/list
 4. 电影录入页面：http://localhost:3000/admin/movie
+
+#demo
+1. 本地首页:https://twmovie-tw93.c9.io/
+2. 本地详细页面：https://twmovie-tw93.c9.io/movie/54c33c490fc9ac90041fb562(确保你已经新建电影)
+3. 后台管理页面：https://twmovie-tw93.c9.io/admin/list
+4. 电影录入页面：https://twmovie-tw93.c9.io/admin/movie
