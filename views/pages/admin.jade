@@ -17,6 +17,10 @@ block content
                     .col-sm-10
                         input#inputLanguage.form-control(type="text",name="movie[language]",value="#{movie.language}")
                 .form-group
+                    label.col-sm-2.control-label(for="inputCountry") 国家
+                    .col-sm-10
+                        input#inputCountry.form-control(type="text",name="movie[country]",value="#{movie.country}")
+                .form-group
                     label.col-sm-2.control-label(for="inputPoster") 图片
                     .col-sm-10
                         input#inputPoster.form-control(type="text",name="movie[poster]",value="#{movie.poster}")

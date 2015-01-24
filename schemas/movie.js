@@ -25,7 +25,8 @@ var MovieSchema=new mongoose.Schema({
 
 MovieSchema.pre('save',function(next){
     if(this.isNew){
-        this.meta.createAt=this.meta.updateAt=Date.now();
+        this.meta.createAt=Date.now();
+        this.meta.updateAt=Date.now();
     }else{
         this.meta.updateAt=Date.now();
     }
@@ -37,7 +38,7 @@ MovieSchema.statics={
         return this.find({}).sort('meta.updateAt').exec(cb);
     },
     findById: function (id,cb) {
-        return this.find({_id:id}).sort('meta.updateAt').exec(cb);
+        return this.findOne({_id:id}).exec(cb);
     }
 };
-MovieSchema.exports=MovieSchema;
+module.exports=MovieSchema;
