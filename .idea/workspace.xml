@@ -73,8 +73,8 @@
       <file leaf-file-name="list.jade" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/pages/list.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50825083" vertical-offset="286" max-vertical-offset="680">
-              <caret line="22" column="83" selection-start-line="22" selection-start-column="83" selection-end-line="22" selection-end-column="83" />
+            <state vertical-scroll-proportion="0.18151815" vertical-offset="85" max-vertical-offset="680">
+              <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -246,7 +246,7 @@
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="options.lastSelected" value="terminal" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
@@ -615,8 +615,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/pages/list.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50825083" vertical-offset="286" max-vertical-offset="680">
-          <caret line="22" column="83" selection-start-line="22" selection-start-column="83" selection-end-line="22" selection-end-column="83" />
+        <state vertical-scroll-proportion="0.18151815" vertical-offset="85" max-vertical-offset="680">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
           <folding />
         </state>
       </provider>
