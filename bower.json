@@ -1,0 +1,26 @@
+{
+  "name": "twMovie",
+  "version": "0.0.1",
+  "homepage": "www.tw93.com",
+  "authors": [
+    "tangwei93 <tw93@qq.com>"
+  ],
+  "description": "twMovie is builded by node and mongodb",
+  "keywords": [
+    "twMovie",
+    "movie"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}

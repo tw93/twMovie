@@ -1,0 +1,33 @@
+{
+  "name": "twMovie",
+  "version": "0.0.1",
+  "description": "twMovie is builded by node and mongodb",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.10.2",
+    "express": "^4.11.1",
+    "jade": "^1.9.1",
+    "mongoose": "^3.8.21",
+    "moment": "^2.9.0",
+    "underscore": "^1.7.0",
+    "path": "^0.11.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tw93/twMovie.git"
+  },
+  "keywords": [
+    "twmovie",
+    "movie"
+  ],
+  "author": "tw93",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tw93/twMovie/issues"
+  },
+  "homepage": "https://github.com/tw93/twMovie"
+}
