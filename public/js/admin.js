@@ -19,3 +19,15 @@ $(function () {
     })
 
 });
+
+$(function(){
+    var flash=$("#movieFlash").val();
+    jwplayer('player').setup({
+        file: flash,
+        image: '/jwplayer/player.jpg',
+        title: 'twMovie',
+        width: '100%',
+        aspectratio: '16:10',
+        primary: 'flash'
+    });
+});
