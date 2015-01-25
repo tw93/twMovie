@@ -43,7 +43,7 @@ app.get('/movie/:id', function (req, res) {
 //admin page
 app.get('/admin/movie', function (req, res) {
     res.render('admin', {
-        title: "twMovie后台录入页",
+        title: "Movie后台录入页",
         movie: {
             doctor: '',
             country: '',
