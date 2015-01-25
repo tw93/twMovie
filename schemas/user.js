@@ -2,6 +2,8 @@
  * Created by tangwei on 2015/1/23.
  */
 var mongoose=require('mongoose');
+var bcrypt=require('bcrypt');
+var SALT_WORK_FACTORY=10;
 var UserSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -27,6 +29,14 @@ UserSchema.pre('save',function(next){
     }else{
         this.meta.updateAt=Date.now();
     }
+    bcrypt.getSalt(SALT_WORK_FACTORY,function(err,salt){
+        if(err) return next(err);
+        bcrypt.hash(user.password,salt,function(err,hash){
+            if(err) return next(err);
+            usr.password=hash;
+            next();
+        })
+    });
     next();
 });
 
