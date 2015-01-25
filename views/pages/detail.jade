@@ -4,7 +4,7 @@ block content
         .row
             .col-md-7
                 input(type="hidden",id="movieFlash",value="#{movie.flash}")
-                div#player
+                a#player(href="#{movie.flash}",style="display:block;width:720px;height:430px")
             .col-md-5
                 dl.dl-horizontal
                     dt 电影名字
@@ -20,6 +20,5 @@ block content
                     dt 简介
                     dd=movie.summary
 
-    script(src="/jwplayer/jwplayer.js",type="text/javascript")
-    script(type="text/javascript") jwplayer.key="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    script(src="/js/admin.js",type="text/javascript")
+    script(src="/player/flowplayer-3.2.6.min.js",type="text/javascript")
+    script(type="text/javascript") flowplayer("player", "/player/flowplayer-3.2.7.swf");
