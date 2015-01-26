@@ -146,15 +146,26 @@ app.delete('/admin/list', function(req, res) {
 // user signUp
 app.post('/user/signup', function(req, res) {
     var _user = req.body.user;
-    var user = new User(_user);
-    user.save(function(err, user) {
+    User.find({
+        name: _user.name
+    }, function(err, user) {
         if (err) {
             console.log(err);
-            return res.redirect('/');
-        }else{
-            return res.redirect('/admin/userlist');
         }
-    })
+        if (user.name=="") {
+            res.redirect('/');
+        } else {
+            var user = new User(_user);
+            user.save(function(err, user) {
+                if (err) {
+                    console.log(err);
+                }
+                console.log('reg is ok');
+            res.redirect('/admin/userlist');
+            });
+        }
+    });
+
 });
 
 //user list page
@@ -170,3 +181,27 @@ app.get('/admin/userlist', function(req, res) {
     });
 
 });
+
+//user login
+app.post('/user/signin',function(req,res){
+    var _user=req.body.user;
+    var name=_user.name;
+    var password=_user.password;
+    User.findOne({name:name},function(err,user) {
+        if(err){
+            console.log(err);
+        }
+        if(user.name===''){
+            console.log('the user name is not reg');
+            return res.redirect('/');
+        }
+        user.comparePassword(password,function(isMatch){
+            if(isMatch){
+                console.log("login ok");
+                return res.redirect('/');
+            }else{
+                console.log('the password is not macth');
+            }
+        })
+    })
+})
