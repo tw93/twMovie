@@ -3,21 +3,24 @@ var path = require('path');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Movie = require('./models/movie.js');
+var User = require('./models/user.js');
 var _ = require('underscore');
 var port = process.env.PORT || 3000;
 var app = express();
 mongoose.connect('mongodb://localhost:27017/twMovie');
 app.set('views', './views/pages');
 app.set('view engine', 'jade');
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
-app.locals.moment= require ('moment');
+app.locals.moment = require('moment');
 app.listen(port);
 console.log('server has started on port' + port);
 
 //index page
-app.get('/', function (req, res) {
-    Movie.fetch(function (err, movies) {
+app.get('/', function(req, res) {
+    Movie.fetch(function(err, movies) {
         if (err) {
             console.log(err);
         }
@@ -30,18 +33,18 @@ app.get('/', function (req, res) {
 });
 
 //detail page
-app.get('/movie/:id', function (req, res) {
+app.get('/movie/:id', function(req, res) {
     var id = req.params.id;
-    Movie.findById(id, function (err, movie) {
+    Movie.findById(id, function(err, movie) {
         res.render('detail', {
-            title: "twMovie"+movie.title,
+            title: "twMovie" + movie.title,
             movie: movie
         });
     });
 });
 
 //admin page
-app.get('/admin/movie', function (req, res) {
+app.get('/admin/movie', function(req, res) {
     res.render('admin', {
         title: "Movie后台录入页",
         movie: {
@@ -57,12 +60,12 @@ app.get('/admin/movie', function (req, res) {
     })
 });
 //admin movie update
-app.get('/admin/update/:id', function (req, res) {
+app.get('/admin/update/:id', function(req, res) {
     var id = req.params.id;
     if (id) {
-        Movie.findById(id, function (err, movie) {
+        Movie.findById(id, function(err, movie) {
             res.render('admin', {
-                title: "twMovie更新"+movie.title,
+                title: "twMovie更新" + movie.title,
                 movie: movie
             });
         });
@@ -70,17 +73,17 @@ app.get('/admin/update/:id', function (req, res) {
 });
 
 //new page  admin post movie
-app.post('/admin/movie/new', function (req, res) {
+app.post('/admin/movie/new', function(req, res) {
     var id = req.body.movie._id;
     var movieObj = req.body.movie;
     var _movie;
     if (id !== 'undefined') {
-        Movie.findById(id, function (err, movie) {
+        Movie.findById(id, function(err, movie) {
             if (err) {
                 console.log(err);
             }
             _movie = _.extend(movie, movieObj);
-            _movie.save(function (err, movie) {
+            _movie.save(function(err, movie) {
                 if (err) {
                     console.log(err);
                 }
@@ -98,7 +101,7 @@ app.post('/admin/movie/new', function (req, res) {
             summary: movieObj.summary,
             flash: movieObj.flash
         });
-        _movie.save(function (err, movie) {
+        _movie.save(function(err, movie) {
             if (err) {
                 console.log(err);
             }
@@ -109,30 +112,61 @@ app.post('/admin/movie/new', function (req, res) {
 
 
 //list page
-app.get('/admin/list', function (req, res) {
-    Movie.fetch(function (err, movies) {
+app.get('/admin/list', function(req, res) {
+    Movie.fetch(function(err, movies) {
         if (err) {
             console.log(err);
         }
         res.render('list', {
             title: "twMovie列表页",
             movies: movies
-
         });
     });
 
 });
 
 //list delete movie
-app.delete('/admin/list',function(req,res){
-    var id=req.query.id;
-    if(id){
-        Movie.remove({_id:id},function(err,movie){
-            if(err){
+app.delete('/admin/list', function(req, res) {
+    var id = req.query.id;
+    if (id) {
+        Movie.remove({
+            _id: id
+        }, function(err, movie) {
+            if (err) {
                 console.log(err);
-            }else{
-                res.json({success:1});
+            } else {
+                res.json({
+                    success: 1
+                });
             }
         })
     }
-})
+});
+
+// user signUp
+app.post('/user/signup', function(req, res) {
+    var _user = req.body.user;
+    var user = new User(_user);
+    user.save(function(err, user) {
+        if (err) {
+            console.log(err);
+            return res.redirect('/');
+        }else{
+            return res.redirect('/admin/userlist');
+        }
+    })
+});
+
+//user list page
+app.get('/admin/userlist', function(req, res) {
+    User.fetch(function(err, users) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('userlist', {
+            title: "twMovie用户列表",
+            users: users
+        });
+    });
+
+});

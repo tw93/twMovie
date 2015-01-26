@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.10.2",
+    "crypto": "0.0.3",
     "express": "^4.11.1",
     "grunt-concurrent": "^1.0.0",
     "jade": "^1.9.1",
