@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var Movie = require('./models/movie.js');
 var User = require('./models/user.js');
 var _ = require('underscore');
+var cookieParser=require('cookie-parser');
+var expressSession=require('express-session');
 var port = process.env.PORT || 3000;
 var app = express();
 mongoose.connect('mongodb://localhost:27017/twMovie');
@@ -14,12 +16,19 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+app.use(expressSession({
+    secret:'tw93'
+}))
 app.locals.moment = require('moment');
 app.listen(port);
 console.log('server has started on port' + port);
 
 //index page
 app.get('/', function(req, res) {
+    console.log('user for session:');
+    console.log(req.session.user);
+
     Movie.fetch(function(err, movies) {
         if (err) {
             console.log(err);
@@ -197,7 +206,7 @@ app.post('/user/signin',function(req,res){
         }
         user.comparePassword(password,function(isMatch){
             if(isMatch){
-                console.log("login ok");
+                req.session.user=user;
                 return res.redirect('/');
             }else{
                 console.log('the password is not macth');

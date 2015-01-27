@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         watch: {
             jade: {
@@ -9,7 +9,7 @@ module.exports = function (grunt) {
             },
             js: {
                 files: ['public/js/**', 'models/**/*.js', 'schemas/**/*.js'],
-                //tasks: ['jshint'],
+               // tasks: ['jshint'],
                 options: {
                     livereload: true
                 }
@@ -38,8 +38,7 @@ module.exports = function (grunt) {
             options: {
                 logConcurrentOutput: true
             }
-        }
-
+    }
     });
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-nodemon');
