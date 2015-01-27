@@ -34,7 +34,10 @@ console.log('server has started on port' + port);
 app.get('/', function(req, res) {
     console.log('user for session:');
     console.log(req.session.user);
-
+    var _user=req.session.user;
+    if(_user){
+        app.locals.user=_user;
+    }
     Movie.fetch(function(err, movies) {
         if (err) {
             console.log(err);
@@ -206,7 +209,7 @@ app.post('/user/signin',function(req,res){
         if(err){
             console.log(err);
         }
-        if(user.name===''){
+        if(user.name==''){
             console.log('the user name is not reg');
             return res.redirect('/');
         }
@@ -219,4 +222,11 @@ app.post('/user/signin',function(req,res){
             }
         })
     })
+})
+
+//user logout
+app.get('/logout',function(req,res){
+	delete req.session.user;
+    delete app.locals.user;
+    res.redirect('/')
 })
