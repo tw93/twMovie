@@ -24,20 +24,28 @@ app.use(expressSession({
     store:new mongoStore({
         url:dbUrl,
         collection:'sessions'
-    })
+    }),
+	proxy: true,
+    resave: true,
+    saveUninitialized: true
 }))
 app.locals.moment = require('moment');
 app.listen(port);
 console.log('server has started on port' + port);
+//pre handle  user
+app.use(function(req,res,next){
+var _user=req.session.user;
+    if(_user){
+        app.locals.user=_user;
+    }
+    	return next();
+})
+
 
 //index page
 app.get('/', function(req, res) {
     console.log('user for session:');
     console.log(req.session.user);
-    var _user=req.session.user;
-    if(_user){
-        app.locals.user=_user;
-    }
     Movie.fetch(function(err, movies) {
         if (err) {
             console.log(err);
