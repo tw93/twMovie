@@ -33,11 +33,13 @@ module.exports = function(grunt) {
                 }
             }
         },
-        concurrent: {
-            tasks: ['nodemon', 'watch'],
-            options: {
-                logConcurrentOutput: true
-            }
+       concurrent: {
+        dev: {
+        tasks: ['nodemon','watch'],
+        options: {
+        logConcurrentOutput: true
+        }
+    }
     }
     });
     grunt.loadNpmTasks('grunt-contrib-watch');
