@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['public/js/**', 'models/**/*.js', 'schemas/**/*.js'],
-               // tasks: ['jshint'],
+                // tasks: ['jshint'],
                 options: {
                     livereload: true
                 }
@@ -33,14 +33,14 @@ module.exports = function(grunt) {
                 }
             }
         },
-       concurrent: {
-        dev: {
-        tasks: ['nodemon','watch'],
-        options: {
-        logConcurrentOutput: true
+        concurrent: {
+            dev: {
+                tasks: ['nodemon', 'watch'],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
         }
-    }
-    }
     });
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-nodemon');
