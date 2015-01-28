@@ -51,7 +51,7 @@ exports.signin = function(req, res) {
 		}
 		if (user.name == '') {
 			console.log('the user name is not reg');
-			return res.redirect('/');
+			return res.redirect('/signin');
 		}
 		user.comparePassword(password, function(isMatch) {
 			if (isMatch) {
@@ -59,6 +59,7 @@ exports.signin = function(req, res) {
 				return res.redirect('/');
 			} else {
 				console.log('the password is not macth');
+				return res.redirect('/signin');
 			}
 		})
 	})
@@ -69,4 +70,18 @@ exports.logout = function(req, res) {
 	delete req.session.user;
 	//delete app.locals.user;
 	res.redirect('/')
+};
+
+
+//show signin
+exports.showSignin = function(req, res) {
+	res.render('signin',{
+		title:'用户登录'
+	})
+};
+//show signup
+exports.showSignup = function(req, res) {
+	res.render('signup',{
+		title:'用户注册'
+	})
 };
