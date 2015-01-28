@@ -75,13 +75,32 @@ exports.logout = function(req, res) {
 
 //show signin
 exports.showSignin = function(req, res) {
-	res.render('signin',{
-		title:'用户登录'
-	})
+	res.render('signin', {
+		title: '用户登录'
+	}) 
 };
 //show signup
 exports.showSignup = function(req, res) {
-	res.render('signup',{
-		title:'用户注册'
+	res.render('signup', {
+		title: '用户注册'
 	})
+};
+
+
+//usersignRequire
+exports.signinRequire = function(req, res, next	) {
+	var user = req.session.user;
+	if (!user) {
+		return res.redirect('/signin');
+	}
+	next();
+};
+
+//user adminRequire
+exports.adminRequire = function(req, res, next) {
+	var user = req.session.user;
+	if (user.role <= 10) {
+		return res.redirect('/signin');
+	}
+	next();
 };
