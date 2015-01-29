@@ -4,7 +4,23 @@ block content
         .row
             .col-md-7
                 input(type="hidden",id="movieFlash",value="#{movie.flash}")
-                a#player(href="#{movie.flash}",style="display:block;width:720px;height:430px;margin-bottom:20px;")
+                a#player(href="#{movie.flash}",style="display:block;width:647px;height:400px;margin-bottom:20px;")
+                .panel.panel-default
+                    .panel-heading  评论区
+                    .panel-body
+                        ul.media-list
+                           each item in comments
+                                li.media
+                                    .pull-left
+                                        span.media-object.glyphicon.glyphicon-user
+                                    .media-body
+                                        h4.media-heading  #{item.from.name}
+                                        p  #{item.content}
+                                    hr
+
+
+
+
                 form(method="POST",action="/user/comment")
                     input(type="hidden" name="comment[movie]" value="#{movie._id}")
                     input(type="hidden" name="comment[from]" value="#{user._id}")
