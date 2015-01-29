@@ -49,7 +49,7 @@ exports.signin = function(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		if (user.name == '') {
+		if (_user.name == '') {
 			console.log('the user name is not reg');
 			return res.redirect('/signin');
 		}
@@ -77,7 +77,7 @@ exports.logout = function(req, res) {
 exports.showSignin = function(req, res) {
 	res.render('signin', {
 		title: '用户登录'
-	}) 
+	})
 };
 //show signup
 exports.showSignup = function(req, res) {

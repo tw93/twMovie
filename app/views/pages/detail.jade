@@ -4,7 +4,13 @@ block content
         .row
             .col-md-7
                 input(type="hidden",id="movieFlash",value="#{movie.flash}")
-                a#player(href="#{movie.flash}",style="display:block;width:720px;height:430px")
+                a#player(href="#{movie.flash}",style="display:block;width:720px;height:430px;margin-bottom:20px;")
+                form(method="POST",action="/user/comment")
+                    input(type="hidden" name="comment[movie]" value="#{movie._id}")
+                    input(type="hidden" name="comment[from]" value="#{user._id}")
+                    .form-group
+                        textarea.form-control(name="comment[content]",row="3")
+                    button.btn.btn-primary(type="submit") 提交
             .col-md-5
                 dl.dl-horizontal
                     dt 电影名字
