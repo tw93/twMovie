@@ -4,7 +4,6 @@ var _ = require('underscore');
 //comment save
 exports.save = function(req, res) {
     var _comment = req.body.comment;
-    var comment = new Comment(_comment);
     var movieId = _comment.movie;
     if (_comment.cid) {
         Comment.findById(
@@ -15,7 +14,9 @@ exports.save = function(req, res) {
                     to: _comment.tid,
                     content: _comment.content
                 };
+                console.log("heheh" + reply);
                 comment.reply.push(reply);
+
                 comment.save(function(err, comment) {
                     if (err) {
                         console.log(err);
@@ -25,6 +26,7 @@ exports.save = function(req, res) {
 
             });
     } else {
+        var comment = new Comment(_comment);
         comment.save(function(err, comment) {
             if (err) {
                 console.log(err);

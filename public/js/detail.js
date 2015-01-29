@@ -2,11 +2,9 @@
  * Created by tangwei on 2015/1/24.
  */
 $(function() {
-    $('.comment').click(function(e) {
-        var target=$(this);
-        var commentId = target.data('cid');
-        var toId = target.data('tid');
-        alert("as");    
+    $('.comment').on('click', function() {
+        var commentId = $(this).data('cid');
+        var toId = $(this).data('tid');
         $('<input>').attr({
             type: 'hidden',
             name: 'comment[tid]',

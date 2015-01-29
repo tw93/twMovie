@@ -17,6 +17,15 @@ block content
                                         h4.media-heading  #{item.from.name}
                                         p  #{item.content}
                                             a.comment.pull-right(href="#comments",data-cid="#{item._id}",data-tid="#{item.from._id}") 回复
+                                            if item.reply && item.reply.length >0
+                                                each reply in item.reply
+                                                    .media
+                                                        .pull-left
+                                                            span.media-object.glyphicon.glyphicon-user
+                                                        .media-body
+                                                            h4.media-heading  #{reply.from.name}
+                                                            p  #{reply.content}
+                                                                a.comment.pull-right(href="#comments",data-cid="#{item._id}",data-tid="#{item.from._id}") 回复
                                     hr
                 #comments
                     form#commentForm(method="POST",action="/user/comment")
@@ -40,5 +49,6 @@ block content
                     dt 简介
                     dd=movie.summary
 
+    script(src="/js/detail.js",type="text/javascript")
     script(src="/player/flowplayer-3.2.6.min.js",type="text/javascript")
     script(type="text/javascript") flowplayer("player", "/player/flowplayer-3.2.7.swf");
