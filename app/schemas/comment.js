@@ -9,6 +9,11 @@ var CommentSchema = new mongoose.Schema({
         type: ObjectId,
         ref: 'Movie'
     },
+    from: {
+        type: ObjectId,
+        ref: 'User'
+    },
+    reply:[{
     to: {
         type: ObjectId,
         ref: 'User'
@@ -17,6 +22,8 @@ var CommentSchema = new mongoose.Schema({
         type: ObjectId,
         ref: 'User'
     },
+    content:String
+    }],
     content: String,
     meta: {
         createAt: {

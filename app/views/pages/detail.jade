@@ -16,17 +16,15 @@ block content
                                     .media-body
                                         h4.media-heading  #{item.from.name}
                                         p  #{item.content}
+                                            a.comment.pull-right(href="#comments",data-cid="#{item._id}",data-tid="#{item.from._id}") 回复
                                     hr
-
-
-
-
-                form(method="POST",action="/user/comment")
-                    input(type="hidden" name="comment[movie]" value="#{movie._id}")
-                    input(type="hidden" name="comment[from]" value="#{user._id}")
-                    .form-group
-                        textarea.form-control(name="comment[content]",row="3")
-                    button.btn.btn-primary(type="submit") 提交
+                #comments
+                    form#commentForm(method="POST",action="/user/comment")
+                        input(type="hidden" name="comment[movie]" value="#{movie._id}")
+                        input(type="hidden" name="comment[from]" value="#{user._id}")
+                        .form-group
+                            textarea.form-control(name="comment[content]",row="3")
+                        button.btn.btn-primary(type="submit") 提交
             .col-md-5
                 dl.dl-horizontal
                     dt 电影名字
