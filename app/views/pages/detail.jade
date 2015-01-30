@@ -17,15 +17,18 @@ block content
                                         h4.media-heading  #{item.from.name}
                                         p  #{item.content}
                                             a.comment.pull-right(href="#comments",data-cid="#{item._id}",data-tid="#{item.from._id}") 回复
-                                            if item.reply && item.reply.length >0
+                                            if item.reply && item.reply.length>0   
                                                 each reply in item.reply
                                                     .media
                                                         .pull-left
                                                             span.media-object.glyphicon.glyphicon-user
                                                         .media-body
-                                                            h4.media-heading  #{reply.from.name}
+                                                            h4.media-heading 
+                                                                | #{reply.from.name}
+                                                                span.text-info &nbsp;回复&nbsp;
+                                                                | #{reply.to.name}
                                                             p  #{reply.content}
-                                                
+                                                                a.comment.pull-right(href="#comments",data-cid="#{item._id}",data-tid="#{reply.from._id}") 回复
                                     hr
                 #comments
                     form#commentForm(method="POST",action="/user/comment")
