@@ -32,11 +32,14 @@ block content
                                     hr
                 #comments
                     form#commentForm(method="POST",action="/user/comment")
-                        input(type="hidden" name="comment[movie]" value="#{movie._id}")
-                        input(type="hidden" name="comment[from]" value="#{user._id}")
                         .form-group
                             textarea.form-control(name="comment[content]",row="3")
-                        button.btn.btn-primary(type="submit") 提交
+                            if user
+                                input(type="hidden" name="comment[movie]" value="#{movie._id}")
+                                input(type="hidden" name="comment[from]" value="#{user._id}")
+                                button.btn.btn-primary(type="submit") 提交
+                            else
+                                 a.navbar-link(href="#",data-toggle="modal",data-target="#signinModal") 登录后可以评论
             .col-md-5
                 dl.dl-horizontal
                     dt 电影名字
