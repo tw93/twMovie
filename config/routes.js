@@ -2,6 +2,7 @@ var Index = require('../app/controllers/index');
 var Movie = require('../app/controllers/movie');
 var User = require('../app/controllers/user');
 var Comment = require('../app/controllers/comment');
+var Category = require('../app/controllers/category');
 var _ = require('underscore');
 
 module.exports = function(app) {
@@ -10,8 +11,8 @@ module.exports = function(app) {
         var _user = req.session.user;
         if (_user) {
             app.locals.user = _user;
-        }else{
-            app.locals.user="";
+        } else {
+            app.locals.user = "";
         }
 
         next();
@@ -34,4 +35,8 @@ module.exports = function(app) {
     app.get('/logout', User.logout);
     //Comment
     app.post('/user/comment', User.signinRequire, Comment.save);
+    //Category
+    app.get('/admin/category/new', User.signinRequire, User.adminRequire, Category.new);
+    app.get('/admin/category/list', User.signinRequire, User.adminRequire, Category.list);
+    app.post('/admin/category/save', User.signinRequire, User.adminRequire, Category.save);
 }
