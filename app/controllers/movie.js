@@ -1,5 +1,6 @@
 var Movie = require('../models/movie.js');
 var Comment = require('../models/comment.js');
+var Category = require('../models/category.js');
 var _ = require('underscore');
 //detail page
 exports.detail = function(req, res) {
@@ -24,18 +25,15 @@ exports.detail = function(req, res) {
 
 //admin page
 exports.new = function(req, res) {
-    res.render('admin', {
-        title: "Movie后台录入页",
-        movie: {
-            doctor: '',
-            country: '',
-            title: '',
-            poster: '',
-            language: '',
-            flash: '',
-            year: '',
-            summary: ''
+    Category.find({}, function(err, categories) {
+        if (err) {
+            console.log(err);
         }
+        res.render('admin', {
+            title: "Movie后台录入页",
+            categories: categories,
+            movie: {}
+        })
     })
 };
 //admin movie update
@@ -43,10 +41,17 @@ exports.update = function(req, res) {
     var id = req.params.id;
     if (id) {
         Movie.findById(id, function(err, movie) {
-            res.render('admin', {
-                title: "twMovie更新" + movie.title,
-                movie: movie
-            });
+            Category.fetch(function(err, categories) {
+                if (err) {
+                    console.log(err);
+                }
+                res.render('admin', {
+                    title: "twMovie更新" + movie.title,
+                    movie: movie,
+                    categories: categories
+                });
+            })
+
         });
     }
 };
@@ -56,7 +61,7 @@ exports.save = function(req, res) {
     var id = req.body.movie._id;
     var movieObj = req.body.movie;
     var _movie;
-    if (id !== 'undefined') {
+    if (id) {
         Movie.findById(id, function(err, movie) {
             if (err) {
                 console.log(err);
@@ -66,25 +71,27 @@ exports.save = function(req, res) {
                 if (err) {
                     console.log(err);
                 }
-                res.redirect('/movie/' + movie._id);
+                console.log(_movie._id);
+                res.redirect('/movie/' + _movie._id);
             })
         })
     } else {
-        _movie = new Movie({
-            doctor: movieObj.doctor,
-            title: movieObj.title,
-            country: movieObj.country,
-            language: movieObj.language,
-            year: movieObj.year,
-            poster: movieObj.poster,
-            summary: movieObj.summary,
-            flash: movieObj.flash
-        });
+        _movie = new Movie(movieObj);
         _movie.save(function(err, movie) {
-            if (err) {
-                console.log(err);
-            }
-            res.redirect('/movie/' + movie._id);
+            var categoryId = _movie.category;
+            Category.findById(categoryId, function(err, category) {
+                if (err) {
+                    console.log(err);
+                }
+                category.movies.push(movie._id);
+                category.save(function(err, category) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.redirect('/movie/' + movie._id);
+                })
+            })
+
         })
     }
 };

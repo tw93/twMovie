@@ -4,12 +4,12 @@ block content
     .container
         .row
             each cat in categories
-                .pannel.panel-primary
-                    .pannel-heading
-                        h3 #{cat.name}
+                .panel.panel-default
+                    .panel-heading
+                        h4 #{cat.name}
                     .panel-body
                         if cat.movies && cat.movies.length > 0
-                            each item in movies
+                            each item in cat.movies
                                 .col-md-2.text-center
                                     .thumbnail
                                         a(href="/movie/#{item._id}")
