@@ -6,7 +6,6 @@ exports.save = function(req, res) {
     var _comment = req.body.comment;
     var movieId = _comment.movie;
     if (_comment.cid) {
-        console.log(_comment.cid);
         Comment.findById(
             _comment.cid,
             function(err, comment) {
@@ -15,9 +14,7 @@ exports.save = function(req, res) {
                     to: _comment.tid,
                     content: _comment.content
                 };
-                console.log("heheh" + reply);
                 comment.reply.push(reply);
-
                 comment.save(function(err, comment) {
                     if (err) {
                         console.log(err);

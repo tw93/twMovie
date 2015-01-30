@@ -25,7 +25,7 @@ block content
                                                         .media-body
                                                             h4.media-heading  #{reply.from.name}
                                                             p  #{reply.content}
-                                                                a.comment.pull-right(href="#comments",data-cid="#{item._id}",data-tid="#{item.from._id}") 回复
+                                                
                                     hr
                 #comments
                     form#commentForm(method="POST",action="/user/comment")

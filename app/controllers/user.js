@@ -49,7 +49,8 @@ exports.signin = function(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		if (_user.name == '') {
+		console.log(user);
+		if (user == null) {
 			console.log('the user name is not reg');
 			return res.redirect('/signin');
 		}
