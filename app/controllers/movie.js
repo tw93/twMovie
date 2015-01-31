@@ -5,6 +5,11 @@ var _ = require('underscore');
 //detail page
 exports.detail = function(req, res) {
     var id = req.params.id;
+    Movie.update({_id:id},{$inc:{pv:1}},function(err,movie){
+        if(err){
+            console.log(err);
+        }
+    })
     Movie.findById(id, function(err, movie) {
         Comment.find({
                 movie: id

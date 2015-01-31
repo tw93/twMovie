@@ -13,6 +13,10 @@ var MovieSchema = new mongoose.Schema({
     },
     language: String,
     country: String,
+    pv: {
+        type:Number,
+        default:0
+    },
     summary: String,
     flash: String,
     poster: String,
