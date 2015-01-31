@@ -1,8 +1,15 @@
 .container
     .row
-        .page-header
+        .page-header.clearfix
             h1=title
-            small from tw93
+            .col-md-4
+                small from tw93
+            .col-md-8
+                form(action="/results",method="GET")
+                    .input-group.col-sm-4.pull-right
+                        input.form-control(type="text",name="q")
+                        span.input-group-btn
+                            button.btn.btn-default(type="submit") 搜索
 .navbar.navbar-default.navbar-fixed-bottom
     .container
         .navbar-header
