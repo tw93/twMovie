@@ -37,7 +37,8 @@ exports.new = function(req, res) {
         res.render('movie_edit', {
             title: "电影录入页",
             categories: categories,
-            movie: {}
+            movie: {},
+            path: req.path
         })
     })
 };
@@ -53,7 +54,8 @@ exports.update = function(req, res) {
                 res.render('movie_edit', {
                     title: "更新:" + movie.title,
                     movie: movie,
-                    categories: categories
+                    categories: categories,
+                    path: req.path
                 });
             })
 
@@ -110,7 +112,8 @@ exports.list = function(req, res) {
         }
         res.render('movie_list', {
             title: "电影列表页",
-            movies: movies
+            movies: movies,
+            path: req.path
         });
     });
 

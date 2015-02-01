@@ -2,18 +2,25 @@ extends ../layout
 block content
     .container
         .row
-            table.table.table-hover.table-bordered
-                thead
-                    tr
-                        th 姓名
-                        th 录入时间
-                        th 删除
-                tbody
-                    each item in users
-                         tr(class="item-id-#{item._id}")
-                            td #{item.name}
-                            td #{moment(item.meta.createdAt).format("YYYY/MM/DD H:m")}
-                            td
-                                button.btn.btn-danger.del(type="button",data-id="#{item._id}") 删除
+            include ../includes/sidebar_admin
+            .col-md-10.col-sm-9.col-md-offset-2.col-sm-offset-3
+                table.table.table-hover.table-bordered
+                    thead
+                        tr
+                            th 姓名
+                            th 级别
+                            th 录入时间
+                            th 删除
+                    tbody
+                        each item in users
+                             tr(class="item-id-#{item._id}")
+                                td #{item.name}
+                                if item.role<11
+                                    td 普通用户
+                                else
+                                    td 管理员
+                                td #{moment(item.meta.createdAt).format("YYYY/MM/DD H:m")}
+                                td
+                                    button.btn.btn-danger.del-user(type="button",data-id="#{item._id}") 删除
 
     script(src="/js/admin.js",type="text/javascript")

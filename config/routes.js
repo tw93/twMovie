@@ -39,8 +39,9 @@ module.exports = function(app) {
     app.post('/user/signin', User.signin);
     app.get('/signin', User.showSignin);
     app.get('/signup', User.showSignup);
-    app.get('/admin/userlist', User.signinRequire, User.adminRequire, User.userlist);
+    app.get('/admin/user/list', User.signinRequire, User.adminRequire, User.userlist);
     app.get('/logout', User.logout);
+    app.delete('/admin/user/list', User.signinRequire, User.adminRequire, User.del);
     //Comment
     app.post('/user/comment', User.signinRequire, Comment.save);
     //Category

@@ -12,7 +12,11 @@ if warn
             a.navbar-brand(href="/") twMovie
         if user
             p.navbar-text.navbar-right
-                span 欢迎您，#{user.name} 
+                if user.role<11
+                    span 欢迎您: #{user.name} 
+                else
+                    span 管理员：
+                    a(href="/admin/movie/list") #{user.name} 
                 span &nbsp;|&nbsp;
                 a.navbar-link(href="/logout") 登出
         else

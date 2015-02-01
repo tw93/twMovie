@@ -3,10 +3,11 @@ var _ = require('underscore');
 
 //admin page
 exports.new = function(req, res) {
-    res.render('category_admin', {
+    res.render('category_new', {
         title: "类别录入页",
         category: {
-            name: ''
+            name: '',
+            path: req.path
         }
     })
 };
@@ -17,7 +18,8 @@ exports.update = function(req, res) {
         Movie.findById(id, function(err, movie) {
             res.render('admin', {
                 title: "更新：" + movie.title,
-                movie: movie
+                movie: movie,
+                path: req.path
             });
         });
     }
@@ -63,7 +65,8 @@ exports.list = function(req, res) {
         }
         res.render('category_list', {
             title: "电影类别列表页",
-            categories: categories
+            categories: categories,
+            path: req.path
         });
     });
 

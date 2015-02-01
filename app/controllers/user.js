@@ -39,10 +39,29 @@ exports.userlist = function(req, res) {
 		}
 		res.render('user_list', {
 			title: "用户列表",
-			users: users
+			users: users,
+			path: req.path
 		});
 	});
 
+};
+
+//list delete user
+exports.del = function(req, res) {
+    var id = req.query.id;
+    if (id) {
+        User.remove({
+            _id: id
+        }, function(err, movie) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json({
+                    success: 1
+                });
+            }
+        })
+    }
 };
 
 //user login
