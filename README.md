@@ -11,13 +11,13 @@ js大法好！node+mongoDB的电影网站。
 1. 本地首页:http://localhost:3000
 2. 本地详细页面：http://localhost:3000/movie/id(确保你已经新建电影)
 3. 后台管理页面：http://localhost:3000/admin/movie/list
-4. 电影录入页面：http://localhost:3000/admin/movie
+4. 电影录入页面：http://localhost:3000/admin/movie/new
 5. 用户登录页面：http://localhost:3000/signin
 6. 用户登录注册：http://localhost:3000/signup
 6. 用户列表页面：http://localhost:3000/admin/userlist
 
-#demo
-1. 本地首页:https://twmovie-tw93-3.c9.io/
-2. 本地详细页面：https://twmovie-tw93-3.c9.io/movie/54c33c490fc9ac90041fb562
-3. 后台管理页面：https://twmovie-tw93-3.c9.io/admin/list
-4. 电影录入页面：https://twmovie-tw93-3.c9.io/admin/movie
+#接下来
+1. 后台美化，可以简约地管理。
+2. 确定到底要做一个什么网站。（软件分享？电影分享？音乐分享？技术分享？）。
+3. 前端页面试着加一个mvvc框架。（react或者angular）。
+4. 适配移动端。
