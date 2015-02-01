@@ -16,6 +16,7 @@
     "mongoose": "^3.8.22",
     "morgan": "^1.5.1",
     "path": "^0.11.14",
+    "serve-favicon": "^2.2.0",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
