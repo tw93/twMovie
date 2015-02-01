@@ -7,10 +7,10 @@ block content
                     .modal-body
                         .form-group
                             label(for="signupName") 用户名
-                            input#signupName.form-control(name="user[name]",type="text")
+                            input#signupName.form-control(name="user[name]",type="text",value=user.name)
                         .form-group
                             label(for="signupPassword") 用户名
-                            input#signupPassword.form-control(name="user[password]",type="password")
+                            input#signupPassword.form-control(name="user[password]",type="password",value=user.name)
                     .modal-footer
-                        button.btn.btn-default(type="button" data-dismiss="modal") 关闭
+                        button.btn.btn-default(type="reset") 重置
                         button.btn.btn-success(type="submit" ) 提交

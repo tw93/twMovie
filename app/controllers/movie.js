@@ -34,8 +34,8 @@ exports.new = function(req, res) {
         if (err) {
             console.log(err);
         }
-        res.render('admin', {
-            title: "Movie后台录入页",
+        res.render('movie_edit', {
+            title: "电影录入页",
             categories: categories,
             movie: {}
         })
@@ -50,8 +50,8 @@ exports.update = function(req, res) {
                 if (err) {
                     console.log(err);
                 }
-                res.render('admin', {
-                    title: "twMovie更新" + movie.title,
+                res.render('movie_edit', {
+                    title: "更新:" + movie.title,
                     movie: movie,
                     categories: categories
                 });
@@ -108,8 +108,8 @@ exports.list = function(req, res) {
         if (err) {
             console.log(err);
         }
-        res.render('list', {
-            title: "twMovie列表页",
+        res.render('movie_list', {
+            title: "电影列表页",
             movies: movies
         });
     });

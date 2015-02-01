@@ -8,17 +8,24 @@ exports.signup = function(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		if (user.name == "") {
-			res.redirect('/');
-		} else {
+		console.log(user.length);
+		if (user.length == 0) {
+			console.log("thwww");
 			var user = new User(_user);
 			user.save(function(err, user) {
 				if (err) {
 					console.log(err);
 				}
 				console.log('reg is ok');
-				res.redirect('/admin/userlist');
+				req.session.warn = '注册成功，现在登录获得更好体验。';
+				return res.redirect('/signin');
 			});
+
+
+		} else {
+
+			req.session.warn = '已经有人抢先注册这个用户了，亲换一个试试。';
+			return res.redirect('/signup');
 		}
 	});
 
@@ -30,7 +37,7 @@ exports.userlist = function(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		res.render('userlist', {
+		res.render('user_list', {
 			title: "twMovie用户列表",
 			users: users
 		});
@@ -52,7 +59,7 @@ exports.signin = function(req, res) {
 		console.log(user);
 		if (user == null) {
 			console.log('the user name is not reg');
-			req.session.warn='用户名不正确，请重新登录。';  
+			req.session.warn = '用户名不正确，请重新登录。';
 			return res.redirect('/signin');
 		}
 		user.comparePassword(password, function(isMatch) {
@@ -61,7 +68,7 @@ exports.signin = function(req, res) {
 				return res.redirect('/');
 			} else {
 				console.log('the password is not macth');
-				req.session.warn='密码不正确,请重新登录。'; 
+				req.session.warn = '密码不正确,请重新登录。';
 				return res.redirect('/signin');
 			}
 		})
@@ -79,13 +86,15 @@ exports.logout = function(req, res) {
 //show signin
 exports.showSignin = function(req, res) {
 	res.render('signin', {
-		title: '用户登录'
+		title: '用户登录',
+		user: {}
 	})
 };
 //show signup
 exports.showSignup = function(req, res) {
 	res.render('signup', {
-		title: '用户注册'
+		title: '用户注册',
+		user: {}
 	})
 };
 
@@ -94,7 +103,7 @@ exports.showSignup = function(req, res) {
 exports.signinRequire = function(req, res, next) {
 	var user = req.session.user;
 	if (!user) {
-		req.session.warn='如果想进行下面操作，请您先登录。'; 
+		req.session.warn = '如果想进行下面操作，请您先登录。';
 		return res.redirect('/signin');
 	}
 	next();
@@ -104,7 +113,7 @@ exports.signinRequire = function(req, res, next) {
 exports.adminRequire = function(req, res, next) {
 	var user = req.session.user;
 	if (user.role <= 10) {
-		req.session.warn='对不起您不是管理员，请使用管理员帐号登录。'; 
+		req.session.warn = '对不起您不是管理员，请使用管理员帐号登录。';
 		return res.redirect('/signin');
 	}
 	next();
