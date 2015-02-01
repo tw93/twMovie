@@ -52,6 +52,7 @@ exports.signin = function(req, res) {
 		console.log(user);
 		if (user == null) {
 			console.log('the user name is not reg');
+			req.session.warn='用户名不正确，请重新登录。';  
 			return res.redirect('/signin');
 		}
 		user.comparePassword(password, function(isMatch) {
@@ -60,6 +61,7 @@ exports.signin = function(req, res) {
 				return res.redirect('/');
 			} else {
 				console.log('the password is not macth');
+				req.session.warn='密码不正确,请重新登录。'; 
 				return res.redirect('/signin');
 			}
 		})
@@ -89,9 +91,10 @@ exports.showSignup = function(req, res) {
 
 
 //usersignRequire
-exports.signinRequire = function(req, res, next	) {
+exports.signinRequire = function(req, res, next) {
 	var user = req.session.user;
 	if (!user) {
+		req.session.warn='如果想进行下面操作，请您先登录。'; 
 		return res.redirect('/signin');
 	}
 	next();
@@ -101,6 +104,7 @@ exports.signinRequire = function(req, res, next	) {
 exports.adminRequire = function(req, res, next) {
 	var user = req.session.user;
 	if (user.role <= 10) {
+		req.session.warn='对不起您不是管理员，请使用管理员帐号登录。'; 
 		return res.redirect('/signin');
 	}
 	next();

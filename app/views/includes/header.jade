@@ -10,6 +10,14 @@
                         input.form-control(type="text",name="q")
                         span.input-group-btn
                             button.btn.btn-default(type="submit") 搜索
+if warn
+    .container
+        .alert.alert-warning.alert-dismissable(role="alert")
+            button.close(type="button",data-dismiss="alert")
+                span(aria-hidden="true") &times;
+                span.sr-only close
+            strong
+            |#{warn}
 .navbar.navbar-default.navbar-fixed-bottom
     .container
         .navbar-header

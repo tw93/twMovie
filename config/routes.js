@@ -9,10 +9,18 @@ module.exports = function(app) {
     //pre handle  user
     app.use(function(req, res, next) {
         var _user = req.session.user;
+        var warn=req.session.warn;
+        delete req.session.warn;  
         if (_user) {
             app.locals.user = _user;
         } else {
             app.locals.user = "";
+        }
+        if (warn) {
+            console.log(req.session.warn);
+            app.locals.warn = warn;
+        } else {
+            app.locals.warn = "";
         }
 
         next();
