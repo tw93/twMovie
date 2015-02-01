@@ -38,7 +38,7 @@ exports.userlist = function(req, res) {
 			console.log(err);
 		}
 		res.render('user_list', {
-			title: "twMovie用户列表",
+			title: "用户列表",
 			users: users
 		});
 	});

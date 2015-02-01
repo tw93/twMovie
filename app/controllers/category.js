@@ -4,7 +4,7 @@ var _ = require('underscore');
 //admin page
 exports.new = function(req, res) {
     res.render('category_admin', {
-        title: "Category后台录入页",
+        title: "类别录入页",
         category: {
             name: ''
         }
@@ -16,7 +16,7 @@ exports.update = function(req, res) {
     if (id) {
         Movie.findById(id, function(err, movie) {
             res.render('admin', {
-                title: "twMovie更新" + movie.title,
+                title: "更新：" + movie.title,
                 movie: movie
             });
         });
@@ -62,7 +62,7 @@ exports.list = function(req, res) {
             console.log(err);
         }
         res.render('category_list', {
-            title: "twMovie类别页",
+            title: "电影类别列表页",
             categories: categories
         });
     });

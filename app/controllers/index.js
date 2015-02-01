@@ -13,7 +13,7 @@ exports.index = function(req, res) {
         }
 
         res.render('index', {
-            title: "twMovie首页",
+            title: "twMovie",
             categories: categories
         });
     })
@@ -42,7 +42,7 @@ exports.search = function(req, res) {
 
             console.log(movies);
             res.render('results', {
-                title: "twMovie结果列表",
+                title: "结果列表",
                 movies: results,
                 currentPage: (page - 0 + 1),
                 query: 'cat=' + catId,
@@ -61,7 +61,7 @@ exports.search = function(req, res) {
                 var results = movies.slice(index, index + count);
                 console.log(results);
                 res.render('results', {
-                    title: "twMovie结果列表",
+                    title: "结果列表",
                     movies: results,
                     currentPage: (page + 1),
                     query: 'q=' + q,
