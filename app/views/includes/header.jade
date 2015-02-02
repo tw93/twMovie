@@ -18,7 +18,7 @@ if warn
                     span 管理员：
                     a(href="/admin/movie/list") #{user.name} 
                 span &nbsp;|&nbsp;
-                a.navbar-link(href="/logout") 登出
+                a.navbar-link(href="/logout?return_url=#{path}") 登出
         else
             p.navbar-text.navbar-right
                 a.navbar-link(href="#",data-toggle="modal",data-target="#signupModal") 注册 
@@ -35,7 +35,7 @@ if warn
         .modal-content
             form(method="POST",action="/user/signup")
                 .modal-header 注册
-                .modal-body
+                .modal-body  
                     .form-group
                         label(for="signupName") 用户名
                         input#signupName.form-control(name="user[name]",type="text")
@@ -58,6 +58,7 @@ if warn
                     .form-group
                         label(for="signupPassword") 用户名
                         input#signinPassword.form-control(name="user[password]",type="password")
+                        input(type="hidden",value="#{path}",name="return_url")
                 .modal-footer
                     button.btn.btn-default(type="button" data-dismiss="modal") 关闭
                     button.btn.btn-success(type="submit" ) 提交

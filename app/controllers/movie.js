@@ -21,7 +21,8 @@ exports.detail = function(req, res) {
                 res.render('detail', {
                     title: "twMovie" + movie.title,
                     movie: movie,
-                    comments: comments
+                    comments: comments,
+                    path:req.originalUrl
                 });
             })
 

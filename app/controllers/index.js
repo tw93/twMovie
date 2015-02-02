@@ -14,7 +14,8 @@ exports.index = function(req, res) {
 
         res.render('index', {
             title: "twMovie",
-            categories: categories
+            categories: categories,
+            path:req.path
         });
     })
 };
@@ -47,7 +48,8 @@ exports.search = function(req, res) {
                 currentPage: (page - 0 + 1),
                 query: 'cat=' + catId,
                 totalPage: Math.ceil(movies.length / count),
-                keyword: category.name
+                keyword: category.name,
+                path:req.originalUrl
             });
         })
     } else {
@@ -66,7 +68,8 @@ exports.search = function(req, res) {
                     currentPage: (page + 1),
                     query: 'q=' + q,
                     totalPage: Math.ceil(movies.length / count),
-                    keyword: q
+                    keyword: q,
+                    path:req.originalUrl
                 });
             })
     }

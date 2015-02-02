@@ -67,8 +67,11 @@ exports.del = function(req, res) {
 //user login
 exports.signin = function(req, res) {
 	var _user = req.body.user;
+	var return_url=req.body.return_url;
+	console.log(return_url);
 	var name = _user.name;
 	var password = _user.password;
+	console.log(req.header);
 	User.findOne({
 		name: name
 	}, function(err, user) {
@@ -84,7 +87,7 @@ exports.signin = function(req, res) {
 		user.comparePassword(password, function(isMatch) {
 			if (isMatch) {
 				req.session.user = user;
-				return res.redirect('/');
+				return res.redirect(return_url);
 			} else {
 				console.log('the password is not macth');
 				req.session.warn = '密码不正确,请重新登录。';
@@ -97,8 +100,9 @@ exports.signin = function(req, res) {
 //user logout
 exports.logout = function(req, res) {
 	delete req.session.user;
-	//delete app.locals.user;
-	res.redirect('/')
+	var return_url=req.param('return_url');
+	console.log(return_url);
+	res.redirect(return_url);
 };
 
 
@@ -106,14 +110,14 @@ exports.logout = function(req, res) {
 exports.showSignin = function(req, res) {
 	res.render('signin', {
 		title: '用户登录',
-		user: {}
+		user: {},
 	})
 };
 //show signup
 exports.showSignup = function(req, res) {
 	res.render('signup', {
 		title: '用户注册',
-		user: {}
+		user: {},
 	})
 };
 
