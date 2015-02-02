@@ -63,7 +63,7 @@ exports.search = function(req, res) {
                 var results = movies.slice(index, index + count);
                 console.log(results);
                 res.render('results', {
-                    title: "结果列表",
+                    title: "搜索列表",
                     movies: results,
                     currentPage: (page + 1),
                     query: 'q=' + q,

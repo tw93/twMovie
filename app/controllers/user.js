@@ -48,26 +48,26 @@ exports.userlist = function(req, res) {
 
 //list delete user
 exports.del = function(req, res) {
-    var id = req.query.id;
-    if (id) {
-        User.remove({
-            _id: id
-        }, function(err, movie) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.json({
-                    success: 1
-                });
-            }
-        })
-    }
+	var id = req.query.id;
+	if (id) {
+		User.remove({
+			_id: id
+		}, function(err, movie) {
+			if (err) {
+				console.log(err);
+			} else {
+				res.json({
+					success: 1
+				});
+			}
+		})
+	}
 };
 
 //user login
 exports.signin = function(req, res) {
 	var _user = req.body.user;
-	var return_url=req.body.return_url;
+	var return_url = req.body.return_url ? req.body.return_url : '/';
 	console.log(return_url);
 	var name = _user.name;
 	var password = _user.password;
@@ -100,9 +100,9 @@ exports.signin = function(req, res) {
 //user logout
 exports.logout = function(req, res) {
 	delete req.session.user;
-	var return_url=req.param('return_url');
-	console.log(return_url);
-	res.redirect(return_url);
+	var return_url = (req.param('return_url') != "undefined") ? req.param('return_url') : '/';
+	console.log("assa" + return_url);
+	res.redirect(encodeURI(return_url));
 };
 
 
