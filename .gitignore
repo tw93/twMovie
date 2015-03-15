@@ -1,0 +1,5 @@
+#忽略.DS_Store目录下的所有文件
+.idea
+#忽略node_modules目录下的所有文件
+node_modules
+public/libs
