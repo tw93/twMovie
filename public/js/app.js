@@ -1,0 +1,1 @@
+angular.module('adminApp',['ngRoute','appRoutes','MovieList','MovieEdit','UserList','CategoryNew','CategoryList'])

@@ -1,0 +1,25 @@
+angular.module('appRoutes',[]).config(['$routeProvider','$locationProvider',
+    function($routeProvider,$locationProvider){
+        $routeProvider
+        .when('/admin/movie/list',{
+            templateUrl:'pages/movie_list.jade',
+            controller:'MovieList'
+        })
+        .when('/admin/movie/new',{
+            templateUrl:'/view/movie_edit.jade',
+            controller:'MovieEdit'
+        })
+        .when('/admin/category/list',{
+            templateUrl:'/view/category_list.jade',
+            controller:'Categorylist'
+        })
+        .when('/admin/category/new',{
+            templateUrl:'/view/category_new.jade',
+            controller:'CategoryNew'
+        })
+        .  .when('/admin/user/list',{
+            templateUrl:'/view/user_list.jade',
+            controller:'UserList'
+        });
+        $locationProvider.html5Mode(true);
+}])
